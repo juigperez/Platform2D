@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://crskbnskbgfxj"]
+[gd_scene load_steps=17 format=3 uid="uid://crskbnskbgfxj"]
 
 [ext_resource type="PackedScene" uid="uid://76ne3727kc26" path="res://scenes/player.tscn" id="1_112od"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_cq7n4"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://drm2rfxh11tgm" path="res://scenes/platform.tscn" id="3_s7hbg"]
 [ext_resource type="PackedScene" uid="uid://cod26dk7dw0gr" path="res://scenes/coin.tscn" id="4_5c1w6"]
 [ext_resource type="FontFile" uid="uid://yf72e1ineq7w" path="res://assets/fonts/PixelOperator8.ttf" id="4_myc1y"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="4_wmblf"]
 [ext_resource type="PackedScene" uid="uid://bauruc7570pui" path="res://scenes/killzone.tscn" id="5_txyyt"]
 [ext_resource type="PackedScene" uid="uid://bp2np72rs61sw" path="res://scenes/gslime.tscn" id="6_i3edk"]
 [ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="8_6jxrf"]
@@ -241,13 +242,18 @@ layer_2/tile_data = PackedInt32Array(262126, 262144, 9, 262127, 262144, 9, 26212
 [node name="Player" parent="." instance=ExtResource("1_112od")]
 position = Vector2(0, -16.285)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(0, -16.285)
 zoom = Vector2(4, 4)
 process_callback = 0
 limit_bottom = 85
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
+script = ExtResource("4_wmblf")
+player = NodePath("../Player")
+smoothing_enabled = true
+smoothing_distance = 3
 
 [node name="killzone" parent="." instance=ExtResource("5_txyyt")]
 
